@@ -29,7 +29,7 @@ In most democracies, citizens who identify with a political party are more likel
 
 <br>
 
-2020\. ["Beyond Opportunity Costs: Campaign Messages, Anger, and Turnout among the Unemployed."](https://www.cambridge.org/core/journals/british-journal-of-political-science/article/beyond-opportunity-costs-campaign-messages-anger-and-turnout-among-the-unemployed/444928192590BEE9B4FB47BB4B7507D9) *British Journal of Political Science* (with S. Erdem Aytac and Susan Stokes)\.
+2020\. ["Beyond Opportunity Costs: Campaign Messages, Anger, and Turnout among the Unemployed."](https://www.cambridge.org/core/journals/british-journal-of-political-science/article/beyond-opportunity-costs-campaign-messages-anger-and-turnout-among-the-unemployed/444928192590BEE9B4FB47BB4B7507D9) *British Journal of Political Science* (with S. Erdem Aytaç and Susan Stokes)\.
 
 [PDF](files/bjps2020.pdf)  \  | \  [Replication](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/USKUR2&widget=dataverse@harvard)
 
