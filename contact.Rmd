@@ -11,10 +11,10 @@ elirau2@gmail.com
 
 
 <i class="fas fa-building"></i> Mailing Address: 
-<br> &nbsp;&nbsp;&nbsp; Eli Rau <br>
-&nbsp;&nbsp;&nbsp; 224 Corwin Hall <br>
-&nbsp;&nbsp;&nbsp; Princeton University <br> 
-&nbsp;&nbsp;&nbsp; Princeton, NJ 08540
+<br> &nbsp;&nbsp;&nbsp;&nbsp; Eli Rau <br>
+&nbsp;&nbsp;&nbsp;&nbsp; 224 Corwin Hall <br>
+&nbsp;&nbsp;&nbsp;&nbsp; Princeton University <br> 
+&nbsp;&nbsp;&nbsp;&nbsp; Princeton, NJ 08540
 
 
 <i class="fas fa-map-marker-alt"></i> Office: 
