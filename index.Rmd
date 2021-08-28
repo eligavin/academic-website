@@ -1,0 +1,44 @@
+---
+title: "Eli Gavin Rau"
+image: "images/headshot.png"
+links:
+  - label: '<i class="fas fa-envelope"></i> Email'
+    url: "mailto:elirau2@gmail.com"
+#  - label: '<i class="fab fa-twitter"></i> Twitter'
+#    url: "https://twitter.com/gusvalo"
+#  - label: '<i class="fab fa-github"></i> GitHub'
+#    url: "https://github.com/gustavo-diaz"
+  - label: '<i class="fab fa-google"></i> Scholar'
+    url: "https://scholar.google.com/citations?user=vEqWK04AAAAJ"
+
+output:
+  postcards::trestles
+site: distill::distill_website
+---
+
+
+<!-- Remove double sidebar -->
+
+```{r, include = FALSE}
+trestles_orig <- readLines(
+  system.file("pandoc_templates/trestles.html",
+              package = "postcards")
+)
+trestles_mod <- trestles_orig
+trestles_mod[
+  which(
+    grepl(
+      'class="d-flex flex-column col px-5 align-items-center align-self-center mh-100" style="overflow-y: scroll;"',
+      trestles_mod
+    )
+  )
+] <- '<div class="d-flex flex-column col px-5 align-items-center align-self-center mh-100" style="overflow-y: none;">'
+trestles_mod <- gsub("'Roboto Slab'", '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif', trestles_mod)
+cat(paste(trestles_mod, collapse = "\n"), file = system.file("pandoc_templates/trestles.html",
+              package = "postcards"))
+```
+
+# About Me
+
+I am a postdoctoral fellow at Princeton University's [Center for the Study of Democratic Politics](csdp.princeton.edu). My research is broadly concerned with electoral institutions and equal representation in democracies. I completed my PhD at Yale University in 2021, where I studied the causal relationship between partisanship and voter turnout and explored how compulsory voting laws change the ways that parties engage voters. I also conduct research on mechanisms of direct democracy, in affiliation with the [Chicago Center on Democracy](https://democracy.uchicago.edu/). My research has been published in the *British Journal of Political Science* and *Comparative Political Studies*. 
+

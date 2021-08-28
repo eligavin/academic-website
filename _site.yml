@@ -1,0 +1,25 @@
+name: "website"
+title: "Eli Gavin Rau"
+theme: theme.css
+description: |
+  Postdoctoral Fellow, Center for the Study of Democratic Politics, Princeton University
+output_dir: "."
+navbar:
+  left:
+    - text: "Research"
+      href: research.html
+    - text: "CV"
+      href: files/elirau_cv.pdf
+    - text: "Contact"
+      href: contact.html
+  right:
+    - icon: fas fa-envelope
+      href: mailto:elirau2@gmail.com
+ #   - icon: fab fa-twitter
+#      href: https://twitter.com/
+ #   - icon: fab fa-github
+ #     href: https://github.com/
+    - icon: fab fa-google
+      href: https://scholar.google.com/citations?user=vEqWK04AAAAJ
+include: ["teaching/"]
+output: distill::distill_article
