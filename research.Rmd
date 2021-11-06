@@ -15,9 +15,9 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Publications
 
-Forthcoming\. "Partisanship as Cause, Not Consequence, of Participation\." *Comparative Political Studies*\.
+2021 (OnlineFirst)\. ["Partisanship as Cause, Not Consequence, of Participation."](https://journals.sagepub.com/doi/abs/10.1177/00104140211047406) *Comparative Political Studies*\.
 
-[PDF](files/chile_rd.pdf) \  | \ [Contact for Replication](mailto:elirau2@gmail.com)
+[PDF](files/cps_chile.pdf) \  | \ [Replication](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/MRGM0K)
 
 
 <details><summary>View Abstract</summary>
@@ -52,8 +52,7 @@ Are people under economic stress more or less likely to vote, and why? With larg
 
 ## Book Projects
 
-Partisan Turnout: Voter Mobilization and the Formation of Partisan
-Identities.
+Can Compulsory Voting Strengthen Democracy?
 
 Are Referendums Democratic? (with Radha Sarkar, Shahana Sheikh,
 and Susan Stokes).
