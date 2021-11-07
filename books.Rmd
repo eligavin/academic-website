@@ -1,0 +1,34 @@
+---
+title: "Book Projects"
+output: 
+  distill::distill_article:
+    toc: true
+    toc_float: true
+---
+  
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Can Compulsory Voting Strengthen Democracy?
+
+From the opinion pages of major newspapers to the floors of national and state legislatures, compulsory voting has been touted as a solution to fundamental problems facing established democracies today. Amid widespread concerns about the quality of democracy and the risk of backsliding, proponents have argued that compulsory voting would prevent the rise of authoritarian candidates; weaken the forces of partisan polarization; and decrease economic inequality. Does compulsory voting live up to such lofty promises in practice? 
+
+My book project examines popular claims about the implications of compulsory voting, presenting new general-equilibrium theories that account for the strategic interactions between voters and political elites under compulsory voting rules. 
+Bringing together causally identified behavioral research with careful study of party strategy, I answer longstanding questions about how compulsory voting shapes the broader political environment. Does compulsory voting lead to a more or less partisan electorate? Do the resulting changes in social norms produce a deeper commitment to democratic principles among citizens? Will the economic policies implemented under compulsory voting curtail rising inequality? 
+As countries begin to have more serious conversations about introducing compulsory voting, the need for answers to these questions has grown more pressing than ever. 
+
+Research for this project is funded by the [Center for the Study of Democratic Politics](https://csdp.princeton.edu/) and the [MacMillan Center for International and Area Studies](https://macmillan.yale.edu/). 
+
+
+## Are Referendums Democratic?
+
+(Collaborative work with Radha Sarkar, Shahana Sheikh, and Susan Stokes)
+
+In theory, referendums and other mechanisms of direct democracy help restore a more immediate and participatory dynamic to representative systems, without which political parties, governments, and policy making can appear distant from the common citizen. But in recent years, a chorus of voices has grown louder questioning the legitimacy and effectiveness of these mechanisms. The Brexit vote and ensuing political paralysis in the UK, and the failure of Colombians to approve a long-awaited peace deal, are two events that, in the eyes of many, marred the image of referendums. Critics argue that the results of referendums tend to be volatile and often do not reflect public opinion on the issue at hand.
+
+This book project addresses the value of referendums for democracies. We begin by testing a series of specific propositions about how referendums function, from a positivist perspective. Who participates in referendums and why? When do politicians choose to call referendums instead of pursuing other means of institutional or policy change? Can citizens’ initiatives can serve as a check on legislative gerrymandering? The answers to these questions inform a broader normative question: do mechanisms of direct democracy outperform representative elections in aggregating societal preferences? And if so, under what conditions?
+
+As part of this project, we are creating a large dataset of every national referendum and plebiscite held in a democracy from 1960 to the present day, including novel measures of key variables such as issue salience and party strategies. This work is part of a [broader initiative](https://democracy.uchicago.edu/toolsoverview/) to create publicly accessible tools for studying and tracking democratic functioning and erosion throughout the world. This research is funded by the [United Nations Democracy Fund (UNDEF)](https://www.un.org/democracyfund/). 

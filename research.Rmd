@@ -1,5 +1,5 @@
 ---
-title: "Research"
+title: "Articles & Papers"
 output: 
   distill::distill_article:
     toc: true
@@ -49,13 +49,6 @@ Are people under economic stress more or less likely to vote, and why? With larg
 "Parties and Mobilization in Referendums" (with Radha Sarkar and Susan Stokes).
 
 "Intra-Party Competition in Multi-member Districts: A Formal Model with Evidence from Latin America."
-
-## Book Projects
-
-Can Compulsory Voting Strengthen Democracy?
-
-Are Referendums Democratic? (with Radha Sarkar, Shahana Sheikh,
-and Susan Stokes).
 
 
 ## Papers In Progress

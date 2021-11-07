@@ -7,8 +7,10 @@ description: |
 output_dir: "."
 navbar:
   left:
-    - text: "Research"
+    - text: "Articles & Papers"
       href: research.html
+    - text: "Book Projects"
+      href: books.html
     - text: "CV"
       href: files/elirau_cv.pdf
     - text: "Contact"
