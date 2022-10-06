@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 2022\. ["Partisanship as Cause, Not Consequence, of Participation."](https://journals.sagepub.com/doi/abs/10.1177/00104140211047406) *Comparative Political Studies*\.
 
-[PDF](files/cps_chile.pdf) \  | \ [Replication](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/MRGM0K)
+[PDF](files/cps_chile.pdf) \  | \  [Replication](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/MRGM0K)
 
 
 <details><summary>View Abstract</summary>

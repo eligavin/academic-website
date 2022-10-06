@@ -4,10 +4,6 @@ image: "images/headshot.png"
 links:
   - label: '<i class="fas fa-envelope"></i> Email'
     url: "mailto:elirau2@gmail.com"
-#  - label: '<i class="fab fa-twitter"></i> Twitter'
-#    url: "https://twitter.com/gusvalo"
-#  - label: '<i class="fab fa-github"></i> GitHub'
-#    url: "https://github.com/gustavo-diaz"
   - label: '<i class="fab fa-google"></i> Scholar'
     url: "https://scholar.google.com/citations?user=vEqWK04AAAAJ"
 
