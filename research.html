@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,17 +74,18 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
   <title>Eli Gavin Rau: Articles &amp; Papers</title>
@@ -783,6 +785,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
+    font-size: 100%;
   }
 
   .html-widget {
@@ -1024,10 +1027,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
-  }
-
-  .figure img {
-    width: 100%;
   }
 
   .figure .caption {
@@ -1859,7 +1858,22 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -1870,6 +1884,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1969,6 +2008,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1991,7 +2032,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2219,6 +2260,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       color: var(--color-secondary);
       font-weight: 500;
       border-color: var(--color-secondary);
+  }
+
+  blockquote {
+      border: none !important;
+      font-style: normal !important;
   }</style>
   <style type="text/css">
   /* base style */
@@ -2375,7 +2421,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2445,82 +2491,83 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h3>Contents</h3>
 <ul>
 <li><a href="#publications" id="toc-publications">Publications</a></li>
-<li><a href="#working-papers" id="toc-working-papers">Working
-Papers</a></li>
-<li><a href="#papers-in-progress" id="toc-papers-in-progress">Papers In
-Progress</a></li>
+<li><a href="#working-papers" id="toc-working-papers">Working Papers</a></li>
+<li><a href="#papers-in-progress" id="toc-papers-in-progress">Papers In Progress</a></li>
 </ul>
 </nav>
 </div>
 <h2 id="publications">Publications</h2>
-<p>2022. <a
-href="https://journals.sagepub.com/doi/abs/10.1177/00104140211047406">“Partisanship
-as Cause, Not Consequence, of Participation.”</a> <em>Comparative
-Political Studies</em>.</p>
-<p><a href="files/cps_chile.pdf">PDF</a>   |   <a
-href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/MRGM0K">Replication</a></p>
+<p>Forthcoming. “Expert Bias and Democratic Erosion: Assessing Expert Perceptions of Contemporary American Democracy.” <em>PS: Political Science and Politics</em> (with Olivier Bergeron-Boutin, John Carey, and Gretchen Helmke).</p>
+<p><br></p>
+<p>2022. <a href="https://journals.sagepub.com/doi/abs/10.1177/00104140211047406">“Partisanship as Cause, Not Consequence, of Participation.”</a> <em>Comparative Political Studies</em>.</p>
+<p><a href="files/cps_chile.pdf">PDF</a>   |   <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/MRGM0K">Replication</a></p>
 <details>
 <summary>
 View Abstract
 </summary>
-<p>In most democracies, citizens who identify with a political party are
-more likely than non-partisans to turn out to vote. But why is this the
-case? Does voting foster partisanship, as prominent models of political
-learning and cognitive dissonance postulate? Or does partisanship
-encourage voting, as expressive voting models and social identity theory
-suggest? I introduce the concept of partisan duty to capture the role of
-partisan social identities in the turnout decision, and present new
-empirical tests of the relationship between partisanship and voting. I
-leverage a unique institutional arrangement in Chile to establish the
-direction of causality with a regression discontinuity, and I implement
-a novel survey design with behavioral outcomes to identify causal
-mechanisms. Data from the US confirms that the main findings generalize
-beyond Chile. Electoral participation does not generate partisanship.
-Instead, partisanship mobilizes voters: it increases the expressive
-benefits to voting and generates a sense of duty to support one’s
-partisan group.</p>
+<p>In most democracies, citizens who identify with a political party are more likely than non-partisans to turn out to vote. But why is this the case? Does voting foster partisanship, as prominent models of political learning and cognitive dissonance postulate? Or does partisanship encourage voting, as expressive voting models and social identity theory suggest? I introduce the concept of partisan duty to capture the role of partisan social identities in the turnout decision, and present new empirical tests of the relationship between partisanship and voting. I leverage a unique institutional arrangement in Chile to establish the direction of causality with a regression discontinuity, and I implement a novel survey design with behavioral outcomes to identify causal mechanisms. Data from the US confirms that the main findings generalize beyond Chile. Electoral participation does not generate partisanship. Instead, partisanship mobilizes voters: it increases the expressive benefits to voting and generates a sense of duty to support one’s partisan group.</p>
 </details>
 <p><br></p>
-<p>2020. <a
-href="https://www.cambridge.org/core/journals/british-journal-of-political-science/article/beyond-opportunity-costs-campaign-messages-anger-and-turnout-among-the-unemployed/444928192590BEE9B4FB47BB4B7507D9">“Beyond
-Opportunity Costs: Campaign Messages, Anger, and Turnout among the
-Unemployed.”</a> <em>British Journal of Political Science</em> (with S.
-Erdem Aytaç and Susan Stokes).</p>
-<p><a href="files/bjps2020.pdf">PDF</a>   |   <a
-href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/USKUR2&amp;widget=dataverse@harvard">Replication</a></p>
+<p>2020. <a href="https://www.cambridge.org/core/journals/british-journal-of-political-science/article/beyond-opportunity-costs-campaign-messages-anger-and-turnout-among-the-unemployed/444928192590BEE9B4FB47BB4B7507D9">“Beyond Opportunity Costs: Campaign Messages, Anger, and Turnout among the Unemployed.”</a> <em>British Journal of Political Science</em> (with S. Erdem Aytaç and Susan Stokes).</p>
+<p><a href="files/bjps2020.pdf">PDF</a>   |   <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/USKUR2&amp;widget=dataverse@harvard">Replication</a></p>
 <details>
 <summary>
 View Abstract
 </summary>
-Are people under economic stress more or less likely to vote, and why?
-With large observational datasets and a survey experiment involving
-unemployed Americans, we show that unemployment depresses participation.
-But it does so more powerfully when the unemployment rate is low, less
-powerfully when it is high. Whereas earlier studies have explained lower
-turnout among the unemployed by stressing the especially high
-opportunity costs these would-be voters face, our evidence points to the
-psychological effects of unemployment and of campaign messages about it.
-When unemployment is high, challengers have an incentive to blame the
-incumbent, thus eliciting anger among the unemployed. Psychologists have
-shown anger to be an approach or mobilizing emotion. When joblessness is
-low, campaigns tend to ignore it. The jobless thus remain in states of
-depression and self-blame, which are demobilizing emotions.
+Are people under economic stress more or less likely to vote, and why? With large observational datasets and a survey experiment involving unemployed Americans, we show that unemployment depresses participation. But it does so more powerfully when the unemployment rate is low, less powerfully when it is high. Whereas earlier studies have explained lower turnout among the unemployed by stressing the especially high opportunity costs these would-be voters face, our evidence points to the psychological effects of unemployment and of campaign messages about it. When unemployment is high, challengers have an incentive to blame the incumbent, thus eliciting anger among the unemployed. Psychologists have shown anger to be an approach or mobilizing emotion. When joblessness is low, campaigns tend to ignore it. The jobless thus remain in states of depression and self-blame, which are demobilizing emotions.
 </details>
 <h2 id="working-papers">Working Papers</h2>
-<p>(Drafts available upon request)</p>
-<p><a href="files/ref_mobilization.pdf">“Party Lethargy as an Obstacle
-to Direct Democracy”</a> (with Radha Sarkar and Susan Stokes).</p>
-<p>“‘People Like Me’: A Group-Identity Model of Voter Turnout.”</p>
-<p>“Intra-Party Competition in Multi-member Districts: A Formal Model
-with Evidence from Latin America.”</p>
+<p>(Available upon request)</p>
+<p>“What Countries Are Most At Risk? Inequality and Democratic Erosion” (with Susan Stokes).</p>
+<blockquote>
+<details>
+<summary>
+View Abstract
+</summary>
+Nearly two dozen countries have experienced democratic erosion or backsliding in the opening decades of the 21st century. Why are some countries at heightened risk of erosion? Income inequality emerges from our cross-national analyses as a highly robust factor that increases this risk, even in wealthy, longstanding democracies — like the United States. Turning to the mechanisms involved, we identify two effects of inequality, both of which leave voters more tolerant of backsliding leaders. One is partisan polarization, a precursor to erosion; we show that it tends to deepen in unequal countries. The second mechanism we call <em>institutional nihilism</em>, a phenomenon we study with original survey experiments. Nihilists are skeptical that their countries’ institutions are capable of solving public problems and prefer to tear them down. Aspiring autocrats take advantage of — and exacerbate — both polarization and nihilism in order to erode their democracies.
+</details>
+</blockquote>
+<p>“Why is Participation Low in Referendums? Lessons from Latin America” (with Radha Sarkar and Susan Stokes).</p>
+<blockquote>
+<details>
+<summary>
+View Abstract
+</summary>
+Whether referendums, initiatives, and other mechanisms of direct democracy enhance representative systems is a matter of debate. Skeptics note — among other criticisms — that turnout tends to be low in referendums, often lower than in candidate elections in the same country. If citizens don’t care enough to participate, how useful can these mechanisms be for improving the quality of democratic systems? We argue that low referendum turnout has as much to do with parties’ disincentives to mobilize voters as with voter disinterest. Prior research on political behavior in referendums has focused largely on Europe, and assumes that voters view them as elections of lesser importance. By shifting focus to Latin America, we introduce more variation in the features of political parties that influence levels of turnout. We draw on cross-national evidence, qualitative research in Colombia, and quantitative analysis of municipal-level referendum voting behavior in Brazil. The key to understanding low voter turnout in these settings is the relatively weaker incentives that political parties have to turn out the vote when control over office is not at stake. We demonstrate that, in clientelistic systems, party operatives have particularly weak incentives to get their constituents out to the polls.
+</details>
+</blockquote>
+<p>“Intra-Party Competition in Multi-member Districts: A Formal Model with Evidence from Latin America.”</p>
+<blockquote>
+<details>
+<summary>
+View Abstract
+</summary>
+Open-list proportional representation systems pose a dilemma for parties: often, candidates maximize their electoral prospects by attacking co-partisans and hurting their own party’s prospects. Under what conditions do campaigns devolve into destructive intra-party fighting? The conventional wisdom is that intra-party competition in open-list systems increases as a function of district magnitude. The basic logic is that, when candidates compete on a long list, they must do more to differentiate themselves from their many co-partisans. But in fact, the opposite is true: candidates are most likely to sabotage their co-partisans in the smallest multi-member districts. I clarify the candidate-level incentives for intra-party fighting with a formal model, and test the theory with qualitative and quantitative evidence from Chile and Colombia. In small multi-member districts, the only path to victory for most candidates is to secure the top position on their party lists, often by sabotaging co-partisans. But in larger-magnitude districts, attacking co-partisans quickly becomes a less efficient and riskier strategy.
+</details>
+</blockquote>
+<p>“Who Trusts the Police in Latin America?” (with Mariela Daby).</p>
+<blockquote>
+<details>
+<summary>
+View Abstract
+</summary>
+Mainstream narratives suggest that hardly anyone in Latin America trusts the police, with major implications for public policy. We draw on empirical data from ten Latin American countries to examine this claim, and to understand what predicts trust or distrust in the police. We find that citizens express higher levels of trust in the police than they do in many other institutions, but attitudes towards the police are diverse both within and across countries. Experiences with police corruption are among the strongest predictors of trust, at both the individual and national level. The demographics of who trusts the police vary by country, but trust is generally lower among those who are young, male, living in urban areas, and indigenous — all populations that are especially likely to suffer abuse at the hands of police. Notably, however, wealth and higher education are also correlated with distrust in the police. 
+</details>
+</blockquote>
+<p>“ ‘People Like Me’: A Group-Identity Model of Voter Turnout.”</p>
+<blockquote>
+<details>
+<summary>
+View Abstract
+</summary>
+I present a novel model of voter turnout that formalizes a key intuition about the rationality of voter turnout: a crucial determining factor in political participation is the sense of belonging to a group. Models of voter turnout often focus exclusively on individuals; yet many voters conceive of their participation in terms of groups. I construct a Kantian model that incorporates group-level logic without requiring altruistic voters — voters in the Kantian model consider the behavior of voters with similar preferences when selecting their strategy; but their end goal is to maximize their own personal utility. The model also provides a framework for modeling endogenous social norms that respond to the particular circumstances of each election.
+</details>
+</blockquote>
 <h2 id="papers-in-progress">Papers In Progress</h2>
-<p>“Social Media and Participation in High-Risk Activism” (with Mariela
-Daby)</p>
-<p>“Does Mandatory Voting Make People Partisan? Party Strategy Under
-Compulsory and Voluntary Voting.”</p>
-<p>“Understanding Democratic Erosion” (with Susan Stokes)</p>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>“Tit-for-Tat and Public Perceptions of Anti-Democratic Behavior” (with Noam Lupu and Elizabeth Zechmeister).</p>
+<p>“Measuring Gender in Latin American Surveys” (with Noam Lupu, Valerie Schweizer-Robinson, and Elizabeth Zechmeister).</p>
+<p>“Compulsory for Whom? Uneven Enforcement of Compulsory Voting in Chile” (with Mario Pino).</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

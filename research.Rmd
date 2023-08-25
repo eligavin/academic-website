@@ -15,6 +15,11 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Publications
 
+Forthcoming\. "Expert Bias and Democratic Erosion: Assessing Expert Perceptions of Contemporary American Democracy." *PS: Political Science and Politics* (with Olivier Bergeron-Boutin, John Carey, and Gretchen Helmke).
+
+<br>
+
+
 2022\. ["Partisanship as Cause, Not Consequence, of Participation."](https://journals.sagepub.com/doi/abs/10.1177/00104140211047406) *Comparative Political Studies*\.
 
 [PDF](files/cps_chile.pdf) \  | \  [Replication](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/MRGM0K)
@@ -44,20 +49,68 @@ Are people under economic stress more or less likely to vote, and why? With larg
 
 ## Working Papers
 
-(Drafts available upon request)
+(Available upon request)
 
-["Party Lethargy as an Obstacle to Direct Democracy"](files/ref_mobilization.pdf) (with Radha Sarkar and Susan Stokes).
 
-“'People Like Me': A Group-Identity Model of Voter Turnout.”
+"What Countries Are Most At Risk? Inequality and Democratic Erosion" (with Susan Stokes).
+
+<blockquote>
+<details><summary>View Abstract</summary>
+Nearly two dozen countries have experienced democratic erosion or backsliding in the opening decades of the 21st century. Why are some countries at heightened risk of erosion? Income inequality emerges from our cross-national analyses as a highly robust factor that increases this risk, even in wealthy, longstanding democracies — like the United States. Turning to the mechanisms involved, we identify two effects of inequality, both of which leave voters more tolerant of backsliding leaders. One is partisan polarization, a precursor to erosion; we show that it tends to deepen in unequal countries. The second mechanism we call *institutional nihilism*, a phenomenon we study with original survey experiments. Nihilists are skeptical that their countries’ institutions are capable of solving public problems and prefer to tear them down. Aspiring autocrats take advantage of — and exacerbate — both polarization and nihilism in order to erode their democracies.
+</details>
+</blockquote>
+
+
+
+"Why is Participation Low in Referendums? Lessons from Latin America" (with Radha Sarkar and Susan Stokes).
+
+<blockquote>
+<details><summary>View Abstract</summary>
+Whether referendums, initiatives, and other mechanisms of direct democracy enhance representative systems is a matter of debate. Skeptics note — among other criticisms — that turnout tends to be low in referendums, often lower than in candidate elections in the same country. If citizens don't care enough to participate, how useful can these mechanisms be for improving the quality of democratic systems? We argue that low referendum turnout has as much to do with parties' disincentives to mobilize voters as with voter disinterest.  Prior research on political behavior in referendums has focused largely on Europe, and assumes that voters view them as elections of lesser importance. By shifting focus to Latin America, we introduce more variation in the features of political parties that influence levels of turnout. We draw on cross-national evidence, qualitative research in Colombia, and quantitative analysis of municipal-level referendum voting behavior in Brazil. The key to understanding low voter turnout in these settings is the relatively weaker incentives that political parties have to turn out the vote when control over office is not at stake. We demonstrate that, in clientelistic systems, party operatives have particularly weak incentives to get their constituents out to the polls. 
+</details>
+</blockquote>
+
+
+
 
 "Intra-Party Competition in Multi-member Districts: A Formal Model with Evidence from Latin America."
+
+<blockquote>
+<details><summary>View Abstract</summary>
+Open-list proportional representation systems pose a dilemma for parties: often, candidates maximize their electoral prospects by attacking co-partisans and hurting their own party’s prospects. Under what conditions do campaigns devolve into destructive intra-party fighting? The conventional wisdom is that intra-party competition in open-list systems increases as a function of district magnitude. The basic logic is that, when candidates compete on a long list, they must do more to differentiate themselves from their many co-partisans. But in fact, the opposite is true: candidates are most likely to sabotage their co-partisans in the smallest multi-member districts. I clarify the candidate-level incentives for intra-party fighting with a formal model, and test the theory with qualitative and quantitative evidence from Chile and Colombia. In small multi-member districts, the only path to victory for most candidates is to secure the top position on their party lists, often by sabotaging co-partisans. But in larger-magnitude districts, attacking co-partisans quickly becomes a less efficient and riskier strategy.
+</details>
+</blockquote>
+
+
+
+
+"Who Trusts the Police in Latin America?" (with Mariela Daby).
+
+<blockquote>
+<details><summary>View Abstract</summary>
+Mainstream narratives suggest that hardly anyone in Latin America trusts the police, with major implications for public policy. We draw on empirical data from ten Latin American countries to examine this claim, and to understand what predicts trust or distrust in the police. We find that citizens express higher levels of trust in the police than they do in many other institutions, but attitudes towards the police are diverse both within and across countries. Experiences with police corruption are among the strongest predictors of trust, at both the individual and national level. The demographics of who trusts the police vary by country, but trust is generally lower among those who are young, male, living in urban areas, and indigenous — all populations that are especially likely to suffer abuse at the hands of police. Notably, however, wealth and higher education are also correlated with distrust in the police. 
+</details>
+</blockquote>
+
+
+
+
+“ 'People Like Me': A Group-Identity Model of Voter Turnout.”
+
+<blockquote>
+<details><summary>View Abstract</summary>
+I present a novel model of voter turnout that formalizes a key intuition about the rationality of voter turnout: a crucial determining factor in political participation is the sense of belonging to a group. Models of voter turnout often focus exclusively on individuals; yet many voters conceive of their participation in terms of groups. I construct a Kantian model that incorporates group-level logic without requiring altruistic voters — voters in the Kantian model consider the behavior of voters with similar preferences when selecting their strategy; but their end goal is to maximize their own personal utility. The model also provides a framework for modeling endogenous social norms that respond to the particular circumstances of each election.
+</details>
+</blockquote>
+
 
 
 ## Papers In Progress
 
-"Social Media and Participation in High-Risk Activism" (with Mariela Daby)
+"Tit-for-Tat and Public Perceptions of Anti-Democratic Behavior" (with Noam Lupu and Elizabeth Zechmeister).
 
-“Does Mandatory Voting Make People Partisan? Party Strategy Under Compulsory and Voluntary Voting.”
+"Measuring Gender in Latin American Surveys" (with Noam Lupu, Valerie Schweizer-Robinson, and Elizabeth Zechmeister).
 
-"Understanding Democratic Erosion" (with Susan Stokes)
+"Compulsory for Whom? Uneven Enforcement of Compulsory Voting in Chile" (with Mario Pino).
+
 

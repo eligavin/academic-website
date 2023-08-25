@@ -111,3 +111,8 @@ d-article a:hover, a:focus {
     font-weight: 500;
     border-color: var(--color-secondary);
 }
+
+blockquote {
+    border: none !important;
+    font-style: normal !important;
+}
